@@ -3,7 +3,13 @@ const crypto = require("crypto");
 const pool = require("../config/db");
 const { analyzePayment } = require("../services/recoveryService");
 const Razorpay = require("razorpay");
+
 const router = express.Router();
+
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_API_KEY,
+    key_secret: process.env.RAZORPAY_API_SECRET,
+});
 
 router.post("/razorpay", async (req, res) => {
     try {
